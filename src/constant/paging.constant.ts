@@ -1,0 +1,4 @@
+export const PAGING = {
+  DEFAULT_PAGE_LIMIT: 10,
+  PAGE_LIMIT_OPTIONS: [10, 25, 50, 100, 200, 500],
+};

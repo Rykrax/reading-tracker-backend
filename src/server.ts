@@ -1,32 +1,27 @@
-import app from "./app.js";
+import "reflect-metadata";
 import { testConnection } from "./config/database.js";
 import { environmentConfig } from "./config/environment.config.js";
+import { initializeContainer } from "./di/container.di.js";
 
 const port = environmentConfig.PORT;
 
 const startServer = async () => {
-  if (environmentConfig.BUILD_MODE === "production") {
-    (async () => {
-      try {
-        await testConnection();
-        app.listen(port, () => {
-          console.log(`This is production. Server chạy trên PORT: ${port}`);
-        });
-      } catch (error) {
-        console.log(error);
+  try {
+    await initializeContainer();
+    await testConnection();
+
+    const { default: app } = await import("./app.js");
+
+    app.listen(port, () => {
+      if (environmentConfig.BUILD_MODE === "production") {
+        console.log(`This is production. Server run on PORT: ${port}`);
+      } else {
+        console.log(`Server run on "http://localhost:${port}"`);
       }
-    })();
-  } else {
-    (async () => {
-      try {
-        await testConnection();
-        app.listen(port, () => {
-          console.log(`Server chạy trên "http://localhost:${port}"`);
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    })();
+    });
+  } catch (error) {
+    console.error("Error start server:", error);
+    process.exit(1);
   }
 };
 
