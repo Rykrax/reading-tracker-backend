@@ -7,3 +7,4 @@ export const bookRoutes = Router();
 const bookController = container.resolve<BookController>(TYPES.BookController);
 
 bookRoutes.get("", bookController.getBooks);
+bookRoutes.get("/:workId", bookController.getBookDetail);

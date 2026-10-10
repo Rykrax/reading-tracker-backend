@@ -20,4 +20,13 @@ export class BookController {
     const result = await this.bookService.getBooks(query);
     res.json(result);
   };
+
+  public getBookDetail = async (
+    req: Request<{ workId: string }>,
+    res: Response,
+  ): Promise<void> => {
+    const { workId } = req.params;
+    const result = await this.bookService.getBookDetail(workId);
+    res.json(result);
+  };
 }

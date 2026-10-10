@@ -42,3 +42,26 @@ export interface OpenLibrarySearchResponse {
   offset: number | null;
   docs: OpenLibraryDoc[];
 }
+
+// export interface GetBookDetail {
+//   key: string;
+//   title: string;
+//   coverImage?: string;
+//   descriptions: string | null;
+//   subjects: string[] | null;
+//   publishYear?: string;
+// }
+
+export interface GetBookDetail {
+  id: string;
+  title: string;
+  subtitle?: string;
+  authors: string[];
+  description: string;
+  coverUrl: string | null;
+  isbn: string | null;
+  publisher: string;
+  publishDate: string;
+  pages: number | null;
+  language: string;
+}
