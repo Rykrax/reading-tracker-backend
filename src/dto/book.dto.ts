@@ -5,10 +5,11 @@ export interface GetBooksQueryDto {
 }
 
 export interface SearchBookResponse {
+  key: string;
   title: string;
   coverImage: string;
   author?: string[] | null;
-  publicYear?: string | null;
+  publishYear?: string | null;
 }
 
 export interface OpenLibraryDoc {
@@ -43,15 +44,6 @@ export interface OpenLibrarySearchResponse {
   docs: OpenLibraryDoc[];
 }
 
-// export interface GetBookDetail {
-//   key: string;
-//   title: string;
-//   coverImage?: string;
-//   descriptions: string | null;
-//   subjects: string[] | null;
-//   publishYear?: string;
-// }
-
 export interface GetBookDetail {
   id: string;
   title: string;
@@ -64,4 +56,20 @@ export interface GetBookDetail {
   publishDate: string;
   pages: number | null;
   language: string;
+  subjects?: string[];
+}
+
+export interface GetBookDetailResponse {
+  id: string;
+  title: string;
+  subtitle?: string;
+  authors: string[];
+  description: string;
+  coverUrl: string | null;
+  isbn: string | null;
+  publisher: string;
+  publishDate: string;
+  pages: number | null;
+  language: string;
+  subjects?: string[];
 }
